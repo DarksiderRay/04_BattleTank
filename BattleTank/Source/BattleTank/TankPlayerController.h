@@ -2,10 +2,10 @@
 
 #pragma once
 
-#include "Tank.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"	// Must be the last include
 
+class ATank;
 /**
  * 
  */
@@ -19,13 +19,26 @@ public:
 
 	virtual void Tick(float DeltaSeconds) override;
 
+private:
 	ATank* GetControlledTank() const;
 
 	// Start the tank moving the barrel so that a shot would it where
 	// the crosshair intersects the world
 	void AimTowardsCrosshair();
 	
+	// Return an OUT parameter, true if hit landscape
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
 
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5f;
 	
-	
+	UPROPERTY(EditAnywhere)
+		float CrossHairYLocation = 0.33333f;
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 1000000;	// 10km
 };
