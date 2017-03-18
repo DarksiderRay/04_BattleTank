@@ -2,7 +2,6 @@
 
 
 #include "BattleTank.h"
-#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
@@ -40,16 +39,6 @@ void ATank::Fire()
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
-	Super::BeginPlay();	// Needed for BP Begin Play to run!
-
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
-	
-}
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (!ensure(TankAimingComponent)) return;
-
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
+	Super::BeginPlay();	// Needed for BP Begin Play to run!	
 }
 
