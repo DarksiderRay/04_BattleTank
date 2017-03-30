@@ -24,7 +24,7 @@ protected:
 		void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
-
+	virtual void SetPawn(APawn* InPawn) override;
 
 	// Start the tank moving the barrel so that a shot would it where
 	// the crosshair intersects the world
@@ -45,4 +45,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 		float LineTraceRange = 1000000;	// 10km
+
+	UFUNCTION()
+		void OnPossessedTankDeath();
 };
